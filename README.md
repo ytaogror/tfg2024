@@ -4,4 +4,6 @@ Repositorio del TFG relativo al curso de adaptación al grado en informátíca d
 
 Todo el código ha sido desarrollado para el desarrollo del TFG
 
-Se añadirá al repositorio todo el código generado para el proyecto.
+Se añadirá al repositorio todo el código generado para el proyecto
+
+Año 2024
