@@ -1,0 +1,12 @@
+[Unit]
+Description=Raspberry Cochedinamico
+After=multi-user.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/pi/Coche-master/
+ExecStart=/bin/bash -c 'python automatiza_carga.py'
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target

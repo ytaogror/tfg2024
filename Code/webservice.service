@@ -1,0 +1,12 @@
+#!/usr/bin/python3.7
+[Unit]
+Description=Raspberry Webservice
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /home/pi/shelly/webserver_shelly.py
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target 

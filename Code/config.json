@@ -1,0 +1,98 @@
+{
+    "bridge": {
+        "name": "Homebridge_general",
+        "username": "CC:22:xx:E3:AA:35",
+        "port": 51821,
+        "pin": "xx-xx-xx",
+        "advertiser": "ciao",
+        "bind": [
+            "eth0"
+        ]
+    },
+    "description": "TFG Unir 2024. Yago Torres",
+    "accessories": [
+        {
+            "accessory": "OpenweathermapTemperature",
+            "name": "Temperatura Exterior",
+            "url": "http://api.openweathermap.org/data/2.5/weather?q=Tudela,es&appid=xxx"
+        },
+        {
+            "accessory": "HTTP-SWITCH",
+            "name": "Coche dinámico",
+            "switchType": "stateful",
+            "onUrl": "http://192.168.68.13:8089/cochedinamico_on",
+            "offUrl": "http://192.168.68.13:8089/cochedinamico_off",
+            "statusUrl": "http://192.168.68.13:8089/cochedinamico_status",
+            "statusPattern": "/running/i"
+        },
+        {
+            "name": "Puerta1",
+            "autoCloseDelay": 20,
+            "openCmd": "curl http://192.168.68.13:8089/puerta1",
+            "closeCmd": "echo Garage CLOSED",
+            "accessory": "GarageCliCmdTrigger"
+        },
+        {
+            "type": "lightSensor",
+            "name": "Placas",
+            "url": "mqtt://localhost:1883",
+            "logMqtt": false,
+            "topics": {
+                "getCurrentAmbientLightLevel": "solargetflow",
+                "getStatusActive": "solargeton"
+            },
+            "accessory": "mqttthing"
+        },
+        {
+            "type": "lightSensor",
+            "name": "Casa",
+            "url": "mqtt://localhost:1883",
+            "logMqtt": false,
+            "topics": {
+                "getCurrentAmbientLightLevel": "casagetflow",
+                "getStatusActive": "casageton"
+            },
+            "accessory": "mqttthing"
+        },
+        {
+            "type": "lightSensor",
+            "name": "Coche",
+            "url": "mqtt://localhost:1883",
+            "logMqtt": true,
+            "topics": {
+                "getCurrentAmbientLightLevel": "cochegetflow",
+                "getStatusActive": "cochegeton"
+            },
+            "accessory": "mqttthing"
+        },
+        {
+            "type": "lightSensor",
+            "name": "Consumo Red",
+            "url": "mqtt://localhost:1883",
+            "logMqtt": true,
+            "topics": {
+                "getCurrentAmbientLightLevel": "redgetflow",
+                "getStatusActive": "redgeton"
+            },
+            "accessory": "mqttthing"
+        },
+        {
+            "type": "lightSensor",
+            "name": "Vertiendo Red",
+            "url": "mqtt://localhost:1883",
+            "logMqtt": true,
+            "topics": {
+                "getCurrentAmbientLightLevel": "excedentesgetflow",
+                "getStatusActive": "extcedentesgeton"
+            },
+            "accessory": "mqttthing"
+        }
+    ],
+    "platforms": [
+        {
+            "name": "Config",
+            "port": 8081,
+            "platform": "config"
+        }
+    ]
+}
